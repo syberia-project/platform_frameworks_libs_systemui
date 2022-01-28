@@ -44,7 +44,6 @@ import android.os.Process;
 import android.os.UserHandle;
 import android.os.UserManager;
 import android.text.TextUtils;
-import android.util.ArrayMap;
 import android.util.Log;
 
 import com.android.launcher3.icons.ThemedIconDrawable.ThemeData;
@@ -58,6 +57,7 @@ import org.xmlpull.v1.XmlPullParser;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.function.Supplier;
 
 /**
@@ -206,7 +206,7 @@ public class IconProvider implements ResourceBasedOverride {
         if (mThemedIconMap != null) {
             return mThemedIconMap;
         }
-        ArrayMap<String, ThemeData> map = new ArrayMap<>();
+        Map<String, ThemeData> map = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
         try {
             Resources res = mContext.getResources();
             int resID = res.getIdentifier(THEMED_ICON_MAP_FILE, "xml", mContext.getPackageName());
